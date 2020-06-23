@@ -1,0 +1,36 @@
+<template>
+  <video muted loop class="screen screen-menu-load">
+    {
+      this.screenName = "MenuLoad2";
+      this.bindState(state => {
+        if (state.screen != this.screenName){
+          if (!this.paused){
+            this.pause();
+          }
+          return
+        }
+        this.play();
+      })
+    }
+    <source src="assets/MenuLoad2.mp4" type="video/mp4">
+
+  </video>
+  <video muted class="screen screen-menu-load">
+    {
+      this.screenName = "MenuLoad";
+      this.bindState(state => {
+        if (state.screen != this.screenName){
+          return
+        }
+        if (this.paused){
+          this.play();
+        }
+      })
+      this.onended = () => {
+        this.setState({screen: "MenuLoad2", prevScreen: document.body.state.screen});
+        this.remove();
+      }
+    }
+    <source src="assets/MenuLoad.mp4" type="video/mp4">
+  </video>
+</template>

@@ -1,0 +1,11 @@
+<template>
+    <div class="sprite image-sprite">
+        {
+            var img = this.find("img");
+            img.src = this.props.src;
+            img.setAttribute("usemap", "#map");
+            this.classList.add(this.props.subclass);
+        }
+        <img height="100%">
+    </div>
+</template>

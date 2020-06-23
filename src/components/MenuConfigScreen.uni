@@ -1,0 +1,48 @@
+<template>
+  <video muted loop class="screen MenuConfig">
+    {
+      this.screenName = "MenuConfig";
+      this.translateMap = {
+        "MenuNewGame": "MenuConfig.mp4"
+      };
+      this.translation = this.parentElement.find(".MenuConfigT");
+      var prevScreen = null;
+      var init = false;
+      this.translation.onloadeddata = () => {
+        if (!init){
+          init = true;
+          return;
+        }
+        if (prevScreen){
+          prevScreen.style["z-index"] = 0;
+        }
+        this.translation.play();
+        this.translation.style["z-index"] = 1;
+      }
+      this.translation.onended = () => {
+        this.translation.style["z-index"] = 0;
+        this.style["z-index"] = 1;
+        if (this.paused){
+          this.play();
+        }
+      };
+      this.bindState(state => {
+        if (state.screen != this.screenName){
+          if (!this.paused){
+            this.pause();
+          }
+          return
+        }
+        prevScreen = document.body.find("." + state.prevScreen);
+        prevScreen.before(this); // dont know why but this fixes z-index bug with video load()
+        this.translation.setAttribute("src", "assets/"+this.translateMap[state.prevScreen]);
+        this.translation.load();
+        this.translation.currentTime = 0;
+      });
+    }
+    <source src="assets/MenuConfig2.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuConfigT">
+    <source src="assets/MenuConfig.mp4" type="video/mp4">
+  </video>
+</template>

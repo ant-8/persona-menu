@@ -1,0 +1,31 @@
+<template>
+    <div class="sprite text-sprite">
+        {
+            var hoverSound = document.getElementById("hoverAudio");
+            var selectSound = document.getElementById("selectAudio");
+            var canvas = this.parentElement;
+            var usableScreens = this.props.screens.split(" ");
+            this.usable = false;
+            var img = this.find("img");
+            img.src = this.props.src;
+            this.bindState((state) => {
+                this.usable = usableScreens.indexOf(state.screen) != -1;
+            })
+            this.classList.add(this.props.subclass);
+            this.addEventListener("mouseover", () => {
+                if (!this.usable) return;
+                hoverSound.play();
+                this.style.opacity = 1;
+            });
+            this.addEventListener("mouseleave", () => {
+                if (!this.usable) return;
+                this.style.opacity = 0;
+            });
+            this.addEventListener("click", () => {
+                if (!this.usable) return;
+                selectSound.play();
+            });
+        }
+        <img height="100%">
+    </div>
+</template>

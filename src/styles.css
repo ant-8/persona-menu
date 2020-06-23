@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #111;
+}
+
+.config-hover{
+    height: 43px;
+    bottom: 114px;
+    left: 259px;
+}
+
+.loading{
+    height: 50px;
+    bottom: 155px;
+    left: 290px;
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+}
+
+.newgame-hover{
+    height: 60px;
+    bottom: 208px;
+    left: 225px;
+}
+
+.sprite {
+    opacity: 0;
+    position: absolute;
+}
+
+.canvaScreen { 
+    height: 720px;
+    width: 1280px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    z-index: 3;
+}
+
+.screen {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

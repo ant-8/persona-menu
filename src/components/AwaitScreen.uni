@@ -1,0 +1,25 @@
+<template>
+  <video muted loop class="screen screen-await AwaitButton">
+    {
+      this.screenName = "AwaitButton";
+      this.bindState(state => {
+        if (state.screen != this.screenName)
+          return
+        if (this.paused)
+          this.play();
+      })
+      onInput = () => {
+        if (this.paused) return;
+        document.getElementById("selectAudio").play();
+        console.log("transition");
+        this.setState({screen: "MenuNewGame", prevScreen: document.body.state.screen});
+        setTimeout(() => {
+          this.remove();
+        },500);
+      }
+      document.body.onkeypress = onInput;
+      document.body.onclick = onInput; 
+    }
+    <source src="assets/AwaitButton.mp4" type="video/mp4">
+  </video>
+</template>

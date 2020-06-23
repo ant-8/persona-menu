@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        {
+            this.state = {
+                screen: "Intro",
+                prevScreen: null
+            };
+            this.imports = ["IntroScreen", 
+                            "AwaitScreen",
+                            "MenuLoadScreen",
+                            "MenuGameScreen",
+                            "MenuConfigScreen",
+                            "CanvaScreen"];
+        }
+        <audio id="selectAudio">
+            <source src="assets/select.wav" type="audio/mpeg"> 
+        </audio>
+        <audio id="hoverAudio">
+            <source src="assets/hover.wav" type="audio/mpeg"> 
+        </audio>
+        <audio autoplay>
+            {
+                this.volume = 0.3;
+            }
+            <source src="assets/track.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <MenuLoadScreen></MenuLoadScreen>
+        <MenuGameScreen></MenuGameScreen>
+        <MenuConfigScreen></MenuConfigScreen>
+        <AwaitScreen></AwaitScreen>
+        <IntroScreen></IntroScreen>
+        <CanvaScreen></CanvaScreen>
+    </body>
+    <script src="uniDOM.js"></script>
+    <script src="main.js"></script>
+</html>

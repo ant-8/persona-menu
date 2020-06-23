@@ -1,0 +1,64 @@
+<template>
+    <div class="canvaScreen">
+        {
+            this.imports = ['TextSprite', 'ImageSprite'];
+            var body = document.body;
+            var screens = body.querySelectorAll(".screen");
+            var screenIntro = body.find(".screen-intro");
+            var selectAudio = document.getElementById("selectAudio");
+            var calcSize = () => {
+                var scale, origin;
+                var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+                scale = Math.min(
+                    h / this.offsetHeight,    
+                    w / this.offsetWidth
+                );
+
+                this.style.transform = "translate(-50%, -50%) " + "scale(" + scale + ")"
+                this.style.top = h / 2 + "px";
+                console.log("calcsize")
+            }
+            window.addEventListener("resize", calcSize);
+            calcSize();
+            window.addEventListener("click", () => {
+                if (body.state.screen == "Intro" && !screenIntro.userPressed){
+                    document.body.find(".screen-await").remove();
+                    this.find(".loading").style.opacity = 1;
+                    screenIntro.userPressed = true;
+                    selectAudio.play();
+                }
+            });
+            this.onFullLoad = () => {
+                var config = this.find(".config-hover"); 
+                var newGame = this.find(".newgame-hover");
+                var configScreen = body.querySelector(".MenuConfigT");
+                var gameScreen = body.querySelector(".MenuNewGameT");
+                config.addEventListener("click", () => {
+                    if (!config.usable) return;
+                    config.style.opacity = 0;
+                    this.setState({screen: "MenuConfig", prevScreen: body.state.screen});
+                });
+                newGame.addEventListener("click", () => {
+                    if (!newGame.usable) return;
+                    newGame.style.opacity = 0;
+                    this.setState({screen: "MenuNewGame", prevScreen: body.state.screen});
+                });
+            };
+        }
+        <TextSprite 
+            src="assets/sprites/newgame_hover.png"
+            subclass="newgame-hover"
+            screens="MenuLoad MenuConfig"
+        ></TextSprite>
+        <TextSprite 
+            src="assets/sprites/config_hover.png"
+            subclass="config-hover"
+            screens="MenuLoad MenuNewGame"
+        ></TextSprite>
+        <ImageSprite
+            src="assets/sprites/loading.png"
+            subclass="loading"
+        ></ImageSprite>
+    </div>
+</template>

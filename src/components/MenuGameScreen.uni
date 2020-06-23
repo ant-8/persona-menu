@@ -1,0 +1,49 @@
+<template>
+  <video muted loop class="screen MenuNewGame">
+    {
+      this.screenName = "MenuNewGame";
+      this.translateMap = {
+        "AwaitButton": "MenuTransition.mp4",
+        "Intro": "MenuTransition.mp4",
+        "MenuConfig": "MenuTNewGame.mp4"
+      };
+      this.translation = this.parentElement.find(".MenuNewGameT");
+      var init = false;
+      this.translation.onloadeddata = () => {
+        if (!init){
+          init = true;
+          return;
+        }
+        if (document.body.state.prevScreen){
+          document.body.find("." + document.body.state.prevScreen).style["z-index"] = 0;
+        }
+        this.translation.play();
+        this.translation.style["z-index"] = 1;
+      }
+      this.translation.onended = () => {
+        this.translation.style["z-index"] = 0;
+        this.style["z-index"] = 1;
+        if (this.paused){
+          this.play();
+        }
+      };
+      this.bindState(state => {
+        if (state.screen != this.screenName){
+          if (!this.paused){
+            this.pause();
+            this.load();
+          }
+          return
+        }
+        console.log("prevScreen", state.prevScreen);
+        this.translation.setAttribute("src", "assets/"+this.translateMap[state.prevScreen]);
+        this.translation.load();
+        this.translation.currentTime = 0;
+      });
+    }
+    <source src="assets/MenuNewGame.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuNewGameT">
+    <source src="assets/MenuTransition.mp4" type="video/mp4">
+  </video>
+</template>

@@ -1,0 +1,22 @@
+<template>
+  <video muted class="screen screen-intro Intro">
+    {
+      this.screenName = "Intro";
+      this.userPressed = false;
+      this.bindState(state => {
+        if (state.screen != this.screenName)
+          return
+        this.style.opacity = 1;
+        this.play();
+      })
+      this.onended = function() {
+        document.body.find(".loading").remove();
+        this.setState({screen: this.userPressed ? "MenuNewGame" : "AwaitButton", prevScreen: document.body.state.screen});
+        setTimeout(() => {
+          this.remove();
+        }, this.userPressed ? 500 : 0);
+      }
+    }
+    <source src="assets/Intro.mp4" type="video/mp4">
+  </video>
+</template>
