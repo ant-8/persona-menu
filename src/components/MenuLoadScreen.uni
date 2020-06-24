@@ -1,36 +1,60 @@
 <template>
-  <video muted loop class="screen screen-menu-load">
+  <video muted loop class="screen MenuLoadGame">
     {
-      this.screenName = "MenuLoad2";
+      this.screenName = "MenuLoadGame";
+      this.sceneB = "assets/MenuLoad3.mp4"
+      this.translateMap = {
+        "MenuNewGame": this.parentElement.find(".MenuLoadGameT-1"),
+        "MenuNewGame2": this.parentElement.find(".MenuLoadGameT-1B"),
+        "MenuConfig": this.parentElement.find(".MenuLoadGameT-2"),
+        "MenuConfig2": this.parentElement.find(".MenuLoadGameT-2B")
+      };
+      var prevScreen = null;
+      for (const screen in this.translateMap){
+        let trScreen = this.translateMap[screen];
+        trScreen.onended = () => {
+          if (this.paused){
+            this.play();
+            this.style["z-index"] = 1;
+          }
+          trScreen.style["z-index"] = 0;
+          trScreen.load();
+        };
+      }
       this.bindState(state => {
         if (state.screen != this.screenName){
           if (!this.paused){
             this.pause();
           }
+          this.style["z-index"] = 0;
           return
         }
-        this.play();
-      })
+        prevScreen = document.body.find("." + state.prevScreen);
+        var configPressed = document.body.configPressed;
+        var translate = this.translateMap[state.prevScreen + (configPressed ? "2" : "")];
+        if (configPressed && this.src != this.sceneB){
+          this.src = this.sceneB;
+          this.load();
+        }
+        if (prevScreen){
+          prevScreen.style["z-index"] = 0;
+        }
+        translate.play();
+        translate.style["z-index"] = 1;
+      });
     }
-    <source src="assets/MenuLoad2.mp4" type="video/mp4">
-
+    <source src="assets/MenuLoad4.mp4" type="video/mp4">
   </video>
-  <video muted class="screen screen-menu-load">
-    {
-      this.screenName = "MenuLoad";
-      this.bindState(state => {
-        if (state.screen != this.screenName){
-          return
-        }
-        if (this.paused){
-          this.play();
-        }
-      })
-      this.onended = () => {
-        this.setState({screen: "MenuLoad2", prevScreen: document.body.state.screen});
-        this.remove();
-      }
-    }
+  <video muted class="screen MenuLoadGameT-1">
+    <source src="assets/MenuLoad5.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuLoadGameT-1B">
     <source src="assets/MenuLoad.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuLoadGameT-2">
+    <source src="assets/MenuLoad2.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuLoadGameT-2B">
+    <source src="assets/MenuLoad6.mp4" type="video/mp4">
   </video>
 </template>

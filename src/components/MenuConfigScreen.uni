@@ -3,46 +3,56 @@
     {
       this.screenName = "MenuConfig";
       this.translateMap = {
-        "MenuNewGame": "MenuConfig.mp4"
+        "MenuNewGame": this.parentElement.find(".MenuConfigT-1"),
+        "MenuNewGame2": this.parentElement.find(".MenuConfigT-1B"),
+        "MenuLoadGame": this.parentElement.find(".MenuConfigT-2"),
+        "MenuLoadGame2": this.parentElement.find(".MenuConfigT-2B")
       };
-      this.translation = this.parentElement.find(".MenuConfigT");
       var prevScreen = null;
-      var init = false;
-      this.translation.onloadeddata = () => {
-        if (!init){
-          init = true;
-          return;
-        }
-        if (prevScreen){
-          prevScreen.style["z-index"] = 0;
-        }
-        this.translation.play();
-        this.translation.style["z-index"] = 1;
+      var configFlag = false;
+      for (const screen in this.translateMap){
+        let trScreen = this.translateMap[screen];
+        trScreen.onended = () => {
+          if (this.paused){
+            this.play();
+            this.style["z-index"] = 1;
+          }
+          trScreen.style["z-index"] = 0;
+          trScreen.load();
+        };
       }
-      this.translation.onended = () => {
-        this.translation.style["z-index"] = 0;
-        this.style["z-index"] = 1;
-        if (this.paused){
-          this.play();
-        }
-      };
       this.bindState(state => {
         if (state.screen != this.screenName){
           if (!this.paused){
             this.pause();
           }
+          this.style["z-index"] = 0;
           return
         }
         prevScreen = document.body.find("." + state.prevScreen);
-        prevScreen.before(this); // dont know why but this fixes z-index bug with video load()
-        this.translation.setAttribute("src", "assets/"+this.translateMap[state.prevScreen]);
-        this.translation.load();
-        this.translation.currentTime = 0;
+        var configPressed = document.body.configPressed;
+        var translate = this.translateMap[state.prevScreen + (configPressed ? "2" : "")];
+        document.body.configPressed = true;
+        
+        if (prevScreen){
+          prevScreen.style["z-index"] = 0;
+        }
+        translate.play();
+        translate.style["z-index"] = 1;
       });
     }
     <source src="assets/MenuConfig2.mp4" type="video/mp4">
   </video>
-  <video muted class="screen MenuConfigT">
+  <video muted class="screen MenuConfigT-1">
     <source src="assets/MenuConfig.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuConfigT-1B">
+    <source src="assets/MenuConfig4.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuConfigT-2">
+    <source src="assets/MenuConfig5.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuConfigT-2B">
+    <source src="assets/MenuConfig3.mp4" type="video/mp4">
   </video>
 </template>

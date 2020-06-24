@@ -32,8 +32,7 @@
             this.onFullLoad = () => {
                 var config = this.find(".config-hover"); 
                 var newGame = this.find(".newgame-hover");
-                var configScreen = body.querySelector(".MenuConfigT");
-                var gameScreen = body.querySelector(".MenuNewGameT");
+                var loadGame = this.find(".loadgame-hover");
                 config.addEventListener("click", () => {
                     if (!config.usable) return;
                     config.style.opacity = 0;
@@ -44,17 +43,27 @@
                     newGame.style.opacity = 0;
                     this.setState({screen: "MenuNewGame", prevScreen: body.state.screen});
                 });
+                loadGame.addEventListener("click", () => {
+                    if (!loadGame.usable) return;
+                    loadGame.style.opacity = 0;
+                    this.setState({screen: "MenuLoadGame", prevScreen: body.state.screen});
+                });
             };
         }
         <TextSprite 
             src="assets/sprites/newgame_hover.png"
             subclass="newgame-hover"
-            screens="MenuLoad MenuConfig"
+            screens="MenuLoadGame MenuConfig"
         ></TextSprite>
         <TextSprite 
             src="assets/sprites/config_hover.png"
             subclass="config-hover"
-            screens="MenuLoad MenuNewGame"
+            screens="MenuLoadGame MenuNewGame"
+        ></TextSprite>
+        <TextSprite 
+            src="assets/sprites/loadgame_hover.png"
+            subclass="loadgame-hover"
+            screens="MenuConfig MenuNewGame"
         ></TextSprite>
         <ImageSprite
             src="assets/sprites/loading.png"

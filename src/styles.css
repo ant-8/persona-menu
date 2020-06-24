@@ -4,6 +4,21 @@ body {
     background-color: #111;
 }
 
+.AwaitButton {
+    z-index: 2;
+}
+
+.Intro{
+    z-index: 2;
+}
+
+.loadgame-hover{
+    transform: rotate(-2deg);
+    height: 42px;
+    bottom: 165px;
+    left: 232px;
+}
+
 .config-hover{
     height: 43px;
     bottom: 114px;

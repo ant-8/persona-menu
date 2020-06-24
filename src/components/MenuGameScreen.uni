@@ -2,48 +2,64 @@
   <video muted loop class="screen MenuNewGame">
     {
       this.screenName = "MenuNewGame";
+      this.sceneB = "assets/MenuNewGame4.mp4"
       this.translateMap = {
-        "AwaitButton": "MenuTransition.mp4",
-        "Intro": "MenuTransition.mp4",
-        "MenuConfig": "MenuTNewGame.mp4"
+        "AwaitButton": this.parentElement.find(".MenuNewGameT-1"),
+        "Intro": this.parentElement.find(".MenuNewGameT-1"),
+        "MenuConfig": this.parentElement.find(".MenuNewGameT-2"),
+        "MenuLoadGame": this.parentElement.find(".MenuNewGameT-3"),
+        "MenuLoadGame2": this.parentElement.find(".MenuNewGameT-3B")
       };
-      this.translation = this.parentElement.find(".MenuNewGameT");
-      var init = false;
-      this.translation.onloadeddata = () => {
-        if (!init){
-          init = true;
-          return;
-        }
-        if (document.body.state.prevScreen){
-          document.body.find("." + document.body.state.prevScreen).style["z-index"] = 0;
-        }
-        this.translation.play();
-        this.translation.style["z-index"] = 1;
+      var prevScreen = null;
+      for (const screen in this.translateMap){
+        let trScreen = this.translateMap[screen];
+        trScreen.onended = () => {
+          if (this.paused){
+            this.play();
+            this.style["z-index"] = 1;
+          }
+          trScreen.style["z-index"] = 0;
+          trScreen.load();
+        };
       }
-      this.translation.onended = () => {
-        this.translation.style["z-index"] = 0;
-        this.style["z-index"] = 1;
-        if (this.paused){
-          this.play();
-        }
-      };
       this.bindState(state => {
         if (state.screen != this.screenName){
           if (!this.paused){
             this.pause();
-            this.load();
           }
+          this.style["z-index"] = 0;
           return
         }
-        console.log("prevScreen", state.prevScreen);
-        this.translation.setAttribute("src", "assets/"+this.translateMap[state.prevScreen]);
-        this.translation.load();
-        this.translation.currentTime = 0;
+        prevScreen = document.body.find("." + state.prevScreen);
+        var configPressed = document.body.configPressed;
+
+        var translate = this.translateMap[state.prevScreen];
+        if (state.prevScreen == "MenuLoadGame" && configPressed){
+          translate = this.translateMap[state.prevScreen+"2"];
+        }
+        if (configPressed && this.src != this.sceneB){
+          this.src = this.sceneB;
+          this.load();
+        }
+        if (prevScreen){
+          prevScreen.style["z-index"] = 0;
+        }
+        translate.play();
+        translate.style["z-index"] = 1;
       });
     }
     <source src="assets/MenuNewGame.mp4" type="video/mp4">
   </video>
-  <video muted class="screen MenuNewGameT">
+  <video muted class="screen MenuNewGameT-1">
     <source src="assets/MenuTransition.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuNewGameT-2">
+    <source src="assets/MenuTNewGame.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuNewGameT-3">
+    <source src="assets/MenuNewGame3.mp4" type="video/mp4">
+  </video>
+  <video muted class="screen MenuNewGameT-3B">
+    <source src="assets/MenuNewGame2.mp4" type="video/mp4">
   </video>
 </template>
