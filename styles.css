@@ -101,6 +101,7 @@ body {
     height: 100%;
     background-color: red;
     z-index: 4;
+    background-image: url(assets/InitBG.jpg);
 }
 
 .LoadCard .numero {
