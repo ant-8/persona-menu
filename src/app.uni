@@ -17,7 +17,8 @@
                             "MenuLoadScreen",
                             "MenuGameScreen",
                             "MenuConfigScreen",
-                            "CanvaScreen"];
+                            "CanvaScreen",
+                            "InfoBar"];
 
         }
         <audio id="selectAudio">
@@ -33,6 +34,7 @@
             <source src="assets/track.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
+        <InfoBar></InfoBar>
         <MenuLoadScreen></MenuLoadScreen>
         <MenuGameScreen></MenuGameScreen>
         <MenuConfigScreen></MenuConfigScreen>

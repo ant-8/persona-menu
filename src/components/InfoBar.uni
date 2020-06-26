@@ -1,0 +1,9 @@
+<template>
+    <a href="https://github.com/AnyThony/persona-menu" target="_blank">
+        <div id="InfoBar">
+            <img src="assets/github.svg" height="30">
+            <span>GitHub Repo</span>
+        </div>
+    </a>
+    <div id="InfoWIP">Work In Progress</div>
+</template>

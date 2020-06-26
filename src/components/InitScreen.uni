@@ -5,6 +5,7 @@
             var startToggle = this.find("#start-toggle");
             var progress = this.find(".progress");
             var loading = this.find("img");
+            var loaded = false;
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
@@ -40,6 +41,7 @@
             }
 
             onLoaded = () => {
+                loaded = true;
                 loading.style.display = "none";
                 startToggle.style.display = "block";
             }
@@ -78,7 +80,7 @@
                     }
                 }, 700);
                 setTimeout(() => {
-                    if(document.body.state.screen != "Intro"){
+                    if(!loaded){
                         clearInterval(checkReady);
                         onLoaded();
                     }
