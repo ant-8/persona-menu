@@ -59,6 +59,7 @@
                     scenes[i].pause();
                     scenes[i].currentTime = 0;
                 }
+                await sleep(1000);
                 loading.style.display = "none";
             }
 
