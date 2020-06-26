@@ -32,7 +32,7 @@
 
                 var checkIntroPressed = () => {
                     if (body.state.screen == "Intro" && !screenIntro.userPressed){
-                        document.body.find(".Intro").playbackRate = 1.5;
+                        document.body.find(".Intro").playbackRate = 1.65;
                         document.body.find(".screen-await").remove();
                         this.find(".loading").style.opacity = 1;
                         screenIntro.userPressed = true;
