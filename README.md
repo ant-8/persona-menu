@@ -16,4 +16,5 @@ To launch a live reload environment:
 ```npm run dev```
 
 To manually build:
-```uni build```
+
+```npm run build```
