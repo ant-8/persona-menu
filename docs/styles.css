@@ -222,6 +222,7 @@ body {
     height: 40px;
     bottom: 47px;
     left: 296px;
+    opacity: 0;
 }
 
 .loading{
