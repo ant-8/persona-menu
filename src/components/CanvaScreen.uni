@@ -30,7 +30,7 @@
                 var configContainer = this.find("#ConfigContainer")
                 body.spinner = spinner;
 
-                window.addEventListener("click", () => {
+                var checkIntroPressed = () => {
                     if (body.state.screen == "Intro" && !screenIntro.userPressed){
                         document.body.find(".Intro").playbackRate = 1.5;
                         document.body.find(".screen-await").remove();
@@ -39,7 +39,8 @@
                         selectAudio.play();
                         console.log("userPressed");
                     }
-                });
+                }
+                window.addEventListener("keypress", checkIntroPressed);
                 config.addEventListener("click", () => {
                     if (!config.usable || body.inTransition){
                         return;
