@@ -20,8 +20,8 @@
           }
           if (this.paused){
             this.play();
-            this.style["z-index"] = 1;
           }
+          this.style["z-index"] = 1;
           trScreen.style["z-index"] = 0;
           trScreen.load();
           body.spinner.style.opacity = 0;
@@ -30,9 +30,9 @@
       }
       this.bindState(state => {
         if (state.screen != this.screenName){
-          if (!this.paused){
+          /*if (!this.paused){
             this.pause();
-          }
+          }*/
           this.style["z-index"] = 0;
           return
         }
