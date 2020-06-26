@@ -1,8 +1,6 @@
 <template>
     <div id="InitScreen">
         {
-            var hoverSound = document.getElementById("hoverAudio");
-            var selectSound = document.getElementById("selectAudio");
             var track = document.getElementById("trackAudio");
             var startToggle = this.find("#start-toggle");
             var progress = this.find(".progress");
@@ -11,15 +9,13 @@
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
 
-            startToggle.onmouseenter = () => {
-                hoverSound.play();
-            }
-
             startToggle.onclick = async () => {
                 startToggle.style.display = "none";
                 await forceBuffer();
+                document.body.initPressed = true;
                 this.setState({
-                    screen: "Intro"
+                    screen: "Intro",
+                    prevScreen: null
                 });
                 track.play();
                 this.remove();

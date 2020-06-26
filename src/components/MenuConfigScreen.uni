@@ -14,6 +14,9 @@
       for (const screen in this.translateMap){
         let trScreen = this.translateMap[screen];
         trScreen.onended = () => {
+          if (!document.body.initPressed){
+            return;
+          }
           if (this.paused){
             this.play();
             this.style["z-index"] = 1;

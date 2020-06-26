@@ -10,6 +10,10 @@
         this.play();
       })
       this.onended = function() {
+        console.log("init onend");
+        if (!document.body.initPressed){
+          return;
+        }
         document.body.find(".loading").remove();
         this.setState({screen: this.userPressed ? "MenuNewGame" : "AwaitButton", prevScreen: document.body.state.screen});
         setTimeout(() => {

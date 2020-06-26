@@ -37,6 +37,7 @@
                         this.find(".loading").style.opacity = 1;
                         screenIntro.userPressed = true;
                         selectAudio.play();
+                        console.log("userPressed");
                     }
                 });
                 config.addEventListener("click", () => {

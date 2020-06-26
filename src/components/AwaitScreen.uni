@@ -9,7 +9,7 @@
           this.play();
       })
       onInput = () => {
-        if (this.paused) return;
+        if (this.paused || !document.body.initPressed) return;
         document.getElementById("selectAudio").play();
         console.log("transition");
         this.setState({screen: "MenuNewGame", prevScreen: document.body.state.screen});
