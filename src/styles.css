@@ -101,9 +101,11 @@ body {
 }
 
 #LoadContainer .header{
-    right: 0;
+    right: -10px;
     position: absolute;
     z-index: 3;
+    top: -52px;
+    transform: rotate(-5.5deg);
 }
 
 #LoadContainer{

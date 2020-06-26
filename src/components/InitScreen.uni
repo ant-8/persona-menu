@@ -50,7 +50,7 @@
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].play();
                 }
-                await sleep(3500);
+                await sleep(4500);
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].pause();
                     scenes[i].currentTime = 0;
@@ -82,7 +82,7 @@
                         clearInterval(checkReady);
                         onLoaded();
                     }
-                }, 15000);
+                }, 10000);
             }
             if (is_touch_device()){
                 loading.style.display = "none";

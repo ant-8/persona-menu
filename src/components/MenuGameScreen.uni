@@ -36,7 +36,7 @@
           this.style["z-index"] = 0;
           return
         }
-        //document.body.find(".loading-menu").opacity = 1;
+        document.body.find(".loading-menu").style.opacity = 1;
         body.inTransition = true;
         prevScreen = document.body.find("." + state.prevScreen);
         var configPressed = document.body.configPressed;
