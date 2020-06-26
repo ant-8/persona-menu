@@ -5,6 +5,7 @@
             var selectSound = document.getElementById("selectAudio");
             var track = document.getElementById("trackAudio");
             var startToggle = this.find("#start-toggle");
+            var progress = this.find(".progress");
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
@@ -19,6 +20,24 @@
                 });
                 track.play();
                 this.remove();
+            }
+
+            function is_touch_device() {
+    
+                var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+                
+                var mq = function (query) {
+                    return window.matchMedia(query).matches;
+                }
+            
+                if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                    return true;
+                }
+            
+                // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+                // https://git.io/vznFH
+                var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+                return mq(query);
             }
 
             onLoaded = () => {
@@ -36,18 +55,32 @@
                             loaded++;
                         }
                     }
+                    progress.innerText = `${loaded}/${scenes.length} loaded`;
                     console.log(loaded, "loaded");
                     if (loaded == scenes.length){
                         console.log("ready");
                         clearInterval(checkReady);
-                        await sleep(1500);
+                        await sleep(3000);
                         onLoaded();
                     }
                 }, 700);
+                setTimeout(() => {
+                    if(document.body.state.screen != "Intro"){
+                        clearInterval(checkReady);
+                        onLoaded();
+                    }
+                }, 15000);
             }
-            waitLoad();
+            if (is_touch_device()){
+                this.find("img").style.display = "none";
+                progress.innerText = "Touch device not supported";
+                progress.style["font-size"] = "64px";
+            }else{
+                waitLoad();
+            }
         }
         <img class="center-in" src="assets/InitLoading.gif" height="60">
+        <span class="center-in progress">0/0 loaded</span>
         <div id="start-toggle" class="center-in">
             <span>Start</span>
         </div>

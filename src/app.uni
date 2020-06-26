@@ -18,6 +18,7 @@
                             "MenuGameScreen",
                             "MenuConfigScreen",
                             "CanvaScreen"];
+
         }
         <audio id="selectAudio">
             <source src="assets/select.wav" type="audio/mpeg"> 

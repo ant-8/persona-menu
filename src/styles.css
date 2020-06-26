@@ -29,6 +29,13 @@ body {
     100% { right: -1000px; }
 }
 
+.progress{
+    margin-top: 55px;
+    font-size: 20px;
+    color: white;
+    font-family: persona;
+}
+
 #start-toggle:hover{
     font-size: 68px;
     color: #ccc;
@@ -52,6 +59,7 @@ body {
 
 #InitScreen{
     position: fixed;
+    text-align: center;
     top: 0;
     width: 100%;
     height: 100%;
