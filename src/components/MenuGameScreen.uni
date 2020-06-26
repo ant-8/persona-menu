@@ -10,6 +10,7 @@
         "MenuLoadGame": this.parentElement.find(".MenuNewGameT-3"),
         "MenuLoadGame2": this.parentElement.find(".MenuNewGameT-3B")
       };
+      var body = document.body;
       var prevScreen = null;
       for (const screen in this.translateMap){
         let trScreen = this.translateMap[screen];
@@ -20,6 +21,8 @@
           }
           trScreen.style["z-index"] = 0;
           trScreen.load();
+          body.spinner.style.opacity = 0;
+          body.inTransition = false;
         };
       }
       this.bindState(state => {
@@ -30,6 +33,8 @@
           this.style["z-index"] = 0;
           return
         }
+        document.body.spinner.style.opacity = 1;
+        body.inTransition = true;
         prevScreen = document.body.find("." + state.prevScreen);
         var configPressed = document.body.configPressed;
 

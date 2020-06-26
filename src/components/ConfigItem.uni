@@ -1,0 +1,48 @@
+<template>
+    <div class="config-item">
+        {
+            this.find(".desc").innerText = this.props.desc;
+            var containStyle = this.parentElement.parentElement.style;
+            var body = document.body;
+            var selector = this.find(".selector");
+            var hoverSound = document.getElementById("hoverAudio");
+            var selectSound = document.getElementById("selectAudio");
+            var toggleImg = this.find("img");
+            var toggle = true;
+            if (this.props.toggle){
+                toggleImg.src = `assets/sprites/config_${this.props.toggle}.png`;
+                toggle = this.props.toggle == "on";
+            }
+            this.onFullLoad = () => {
+                this.addEventListener("mouseenter", () => {
+                    if (body.state.screen != "MenuConfig" || !containStyle.opacity){
+                        return;
+                    }
+                    this.style.cursor = "pointer";
+                    selector.style.display = "block";
+                    hoverSound.play();
+                });
+                this.addEventListener("mouseleave", () => {
+                    if (body.state.screen != "MenuConfig" || !containStyle.opacity){
+                        return;
+                    }
+                    this.style.cursor = "auto";
+                    selector.style.display = "none";
+                });
+                this.onclick = () => {
+                    if (body.state.screen != "MenuConfig" || !containStyle.opacity){
+                        return;
+                    }
+                    toggle = !toggle;
+                    toggleImg.src = `assets/sprites/config_${toggle ? "on" : "off"}.png`;
+                    selectSound.play();
+                }
+            }
+        }
+        <div class="selector"></div>
+        <div class="toggle">
+            <img width="135" src="assets/sprites/config_on.png">
+        </div>
+        <div class="desc"></div>
+    </div>
+</template>

@@ -1,7 +1,7 @@
 <template>
     <div class="canvaScreen">
         {
-            this.imports = ['TextSprite', 'ImageSprite'];
+            this.imports = ['TextSprite', 'ImageSprite', 'ConfigContainer', 'LoadContainer'];
             var body = document.body;
             var screens = body.querySelectorAll(".screen");
             var screenIntro = body.find(".screen-intro");
@@ -21,35 +21,64 @@
             }
             window.addEventListener("resize", calcSize);
             calcSize();
-            window.addEventListener("click", () => {
-                if (body.state.screen == "Intro" && !screenIntro.userPressed){
-                    document.body.find(".screen-await").remove();
-                    this.find(".loading").style.opacity = 1;
-                    screenIntro.userPressed = true;
-                    selectAudio.play();
-                }
-            });
             this.onFullLoad = () => {
                 var config = this.find(".config-hover"); 
                 var newGame = this.find(".newgame-hover");
                 var loadGame = this.find(".loadgame-hover");
+                var configBG = this.find(".ConfigBG");
+                var spinner = this.find(".loading-menu");
+                var configContainer = this.find("#ConfigContainer")
+                body.spinner = spinner;
+
+                window.addEventListener("click", () => {
+                    if (body.state.screen == "Intro" && !screenIntro.userPressed){
+                        document.body.find(".Intro").playbackRate = 1.5;
+                        document.body.find(".screen-await").remove();
+                        this.find(".loading").style.opacity = 1;
+                        screenIntro.userPressed = true;
+                        selectAudio.play();
+                    }
+                });
                 config.addEventListener("click", () => {
-                    if (!config.usable) return;
+                    if (!config.usable || body.inTransition){
+                        return;
+                    }
+                    spinner.style.opacity = 1;
                     config.style.opacity = 0;
+                    setTimeout(() => {
+                        configBG.style.opacity = 1;
+                        configBG.src = configBG.src;
+                        setTimeout(() => {
+                            configContainer.style.opacity = 1;
+                        }, 500);
+                    }, document.body.configPressed ? 1000 : 2000);
                     this.setState({screen: "MenuConfig", prevScreen: body.state.screen});
                 });
                 newGame.addEventListener("click", () => {
-                    if (!newGame.usable) return;
+                    if (!newGame.usable || body.inTransition){
+                        return;
+                    }
                     newGame.style.opacity = 0;
+                    spinner.style.opacity = 1;
+                    configBG.style.opacity = 0;
+                    configContainer.style.opacity = 0;
                     this.setState({screen: "MenuNewGame", prevScreen: body.state.screen});
                 });
                 loadGame.addEventListener("click", () => {
-                    if (!loadGame.usable) return;
+                    if (!loadGame.usable || body.inTransition){
+                        return;
+                    }
                     loadGame.style.opacity = 0;
+                    spinner.style.opacity = 1;
+                    configBG.style.opacity = 0;
+                    configContainer.style.opacity = 0;
                     this.setState({screen: "MenuLoadGame", prevScreen: body.state.screen});
                 });
             };
         }
+        <img class="screen ConfigBG" src="assets/ConfigBG.gif">
+        <ConfigContainer></ConfigContainer>
+        <LoadContainer></LoadContainer>
         <TextSprite 
             src="assets/sprites/newgame_hover.png"
             subclass="newgame-hover"
@@ -67,7 +96,11 @@
         ></TextSprite>
         <ImageSprite
             src="assets/sprites/loading.png"
-            subclass="loading"
+            subclass="spinning loading"
+        ></ImageSprite>
+        <ImageSprite
+            src="assets/sprites/loading.png"
+            subclass="spinning loading-menu"
         ></ImageSprite>
     </div>
 </template>

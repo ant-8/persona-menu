@@ -3,6 +3,7 @@
         {
             var hoverSound = document.getElementById("hoverAudio");
             var selectSound = document.getElementById("selectAudio");
+            var body = document.body;
             var canvas = this.parentElement;
             var usableScreens = this.props.screens.split(" ");
             this.usable = false;
@@ -11,18 +12,25 @@
             this.bindState((state) => {
                 this.usable = usableScreens.indexOf(state.screen) != -1;
             })
-            this.classList.add(this.props.subclass);
-            this.addEventListener("mouseover", () => {
-                if (!this.usable) return;
+            if (this.props.subclass){
+                this.props.subclass.split(" ").forEach(cl => {
+                    this.classList.add(cl);
+                })
+            }
+            this.addEventListener("mouseenter", () => {
+                if (!this.usable || body.inTransition) return;
+                this.style.cursor = "pointer";
                 hoverSound.play();
                 this.style.opacity = 1;
             });
             this.addEventListener("mouseleave", () => {
-                if (!this.usable) return;
+                if (!this.usable || body.inTransition) return;
+                this.style.cursor = "auto";
                 this.style.opacity = 0;
             });
             this.addEventListener("click", () => {
-                if (!this.usable) return;
+                if (!this.usable || body.inTransition) return;
+                this.style.cursor = "auto";
                 selectSound.play();
             });
         }

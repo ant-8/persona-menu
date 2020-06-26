@@ -7,10 +7,12 @@
     <body>
         {
             this.state = {
-                screen: "Intro",
+                screen: "Init",
                 prevScreen: null
             };
-            this.imports = ["IntroScreen", 
+            this.inTransition = false;
+            this.imports = ["InitScreen",
+                            "IntroScreen", 
                             "AwaitScreen",
                             "MenuLoadScreen",
                             "MenuGameScreen",
@@ -23,7 +25,7 @@
         <audio id="hoverAudio">
             <source src="assets/hover.wav" type="audio/mpeg"> 
         </audio>
-        <audio autoplay>
+        <audio id="trackAudio">
             {
                 this.volume = 0.3;
             }
@@ -36,6 +38,7 @@
         <AwaitScreen></AwaitScreen>
         <IntroScreen></IntroScreen>
         <CanvaScreen></CanvaScreen>
+        <InitScreen></InitScreen>
     </body>
     <script src="uniDOM.js"></script>
     <script src="main.js"></script>

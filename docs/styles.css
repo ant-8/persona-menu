@@ -4,12 +4,197 @@ body {
     background-color: #111;
 }
 
+@font-face {
+    font-family: persona;
+    src: url(assets/UXFont.ttf);
+}
+
+@-webkit-keyframes slide-in {
+    80% { right: -1000px; }
+    100% { right: 0; }
+}
+
+@keyframes slide-in {
+    80% { right: -1000px; }
+    100% { right: 0; }
+}
+
+@-webkit-keyframes slide-out {
+    0% { right: 0px; }
+    100% { right: -1000px; }
+}
+
+@keyframes slide-out {
+    0% { right: 0px; }
+    100% { right: -1000px; }
+}
+
+#start-toggle:hover{
+    font-size: 68px;
+    color: #ccc;
+}
+#start-toggle{
+    display: none;
+    font-family: persona;
+    font-size: 64px;
+    cursor: pointer;
+    color:white;
+    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+}
+
+.center-in{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#InitScreen{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    z-index: 4;
+}
+
+.LoadCard .numero {
+    font-family: persona;
+    position: absolute;
+    bottom: 10px;
+    left: 60px;
+    font-size: 38px;
+    color: white;
+    text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000;
+}
+.load-slide-in{
+    -webkit-animation: slide-in 2.5s forwards;
+    animation: slide-in 2.5s forwards;
+}
+
+.load-slide-out{
+    -webkit-animation: slide-out 0.5s;
+    animation: slide-out 0.5s;
+}
+
+.LoadCard img{
+    height: 430px;
+}
+.LoadCard {
+    transform: rotate(-20deg);
+    position: absolute;
+    right: -55;
+    z-index: 2;
+    cursor: pointer;
+}
+#LoadContainer .header img {
+    height: 150px;
+}
+
+#LoadContainer .header{
+    right: 0;
+    position: absolute;
+    z-index: 3;
+}
+
+#LoadContainer{
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    right: -1000px;
+}
+
+@keyframes wiggle{
+	0%{
+        clip-path: polygon(10% 10%, 89% 6%, 94% 91%, 10% 90%);
+		-webkit-clip-path: polygon(10% 10%, 89% 6%, 94% 91%, 10% 90%);
+	}
+	50%{
+        clip-path: polygon(1% 5%, 93% 29%, 88% 87%, 6% 60%);
+		-webkit-clip-path: polygon(1% 5%, 93% 29%, 88% 87%, 6% 60%);
+	}
+	100%{
+        clip-path: polygon(10% 10%, 89% 6%, 94% 91%, 10% 90%);
+		-webkit-clip-path: polygon(10% 10%, 89% 6%, 94% 91%, 10% 90%);
+	}
+}
+
+.selector{
+    display: none;
+    position: absolute;
+    left: -10px;
+    height: 135%;
+    width: 120%;
+    background-color: red;
+	-webkit-animation: wiggle .4s linear infinite;
+    -webkit-transition: ALL .4s;
+    animation: wiggle .4s linear infinite;
+	transition: ALL .4s;
+}
+
+.config-item .toggle{
+    z-index: 3;
+    display: block;
+}
+
+.config-item .desc{
+    z-index: 3;
+    margin-top: 12.5px;
+    margin-right: 10px;
+    font-family: persona;
+    color:white;
+    font-size: 28px;
+}
+
+.config-item{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#ConfigContainer .item-list{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 475px;
+    display: flex;
+    flex-direction: column;
+}
+
+#ConfigContainer .title .h1{
+    -webkit-text-stroke: 1px black;
+}
+
+#ConfigContainer .title{
+    margin-top: 50px;
+    text-align: center;
+    font-family: persona;
+    color: white;
+}
+
+#ConfigContainer{
+    opacity: 0;
+    position: absolute;
+    height: 600px;
+    width: 450px;
+    bottom: 120px;
+    right: 260px;
+}
+
 .AwaitButton {
     z-index: 2;
 }
 
 .Intro{
     z-index: 2;
+}
+
+.ConfigBG {
+    opacity: 0;
 }
 
 .loadgame-hover{
@@ -25,10 +210,21 @@ body {
     left: 259px;
 }
 
+.loading-menu{
+    height: 40px;
+    bottom: 47px;
+    left: 296px;
+}
+
 .loading{
     height: 50px;
     bottom: 155px;
     left: 290px;
+}
+
+
+
+.spinning{
     animation-name: spin;
     animation-duration: 2000ms;
     animation-iteration-count: infinite;
@@ -47,6 +243,7 @@ body {
 }
 
 .canvaScreen { 
+    overflow: hidden;
     height: 720px;
     width: 1280px;
     top: 50%;

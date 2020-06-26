@@ -1,0 +1,8 @@
+<template>
+    <div class="LoadCard">
+        <img src="assets/sprites/loadgame_card.png">
+        <div class="numero">
+            <span>No.1</span>
+        </div>
+    </div>
+</template>

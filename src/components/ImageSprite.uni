@@ -4,7 +4,11 @@
             var img = this.find("img");
             img.src = this.props.src;
             img.setAttribute("usemap", "#map");
-            this.classList.add(this.props.subclass);
+            if (this.props.subclass){
+                this.props.subclass.split(" ").forEach(cl => {
+                    this.classList.add(cl);
+                })
+            }
         }
         <img height="100%">
     </div>

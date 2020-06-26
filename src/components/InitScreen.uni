@@ -1,0 +1,55 @@
+<template>
+    <div id="InitScreen">
+        {
+            var hoverSound = document.getElementById("hoverAudio");
+            var selectSound = document.getElementById("selectAudio");
+            var track = document.getElementById("trackAudio");
+            var startToggle = this.find("#start-toggle");
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            startToggle.onmouseenter = () => {
+                hoverSound.play();
+            }
+
+            startToggle.onclick = () => {
+                this.setState({
+                    screen: "Intro"
+                });
+                track.play();
+                this.remove();
+            }
+
+            onLoaded = () => {
+                this.find("img").remove();
+                startToggle.style.display = "block";
+            }
+
+            async function waitLoad(){
+                await sleep(1000);
+                var scenes = document.getElementsByTagName("video");
+                var checkReady = setInterval(async () => {
+                    var loaded = 0;
+                    for (let i = 0; i < scenes.length; i++){
+                        if (scenes[i].readyState == 4){
+                            loaded++;
+                        }
+                    }
+                    console.log(loaded, "loaded");
+                    if (loaded == scenes.length){
+                        console.log("ready");
+                        clearInterval(checkReady);
+                        await sleep(1500);
+                        onLoaded();
+                    }
+                }, 700);
+            }
+            waitLoad();
+        }
+        <img class="center-in" src="assets/InitLoading.gif" height="60">
+        <div id="start-toggle" class="center-in">
+            <span>Start</span>
+        </div>
+    </div>
+</template>

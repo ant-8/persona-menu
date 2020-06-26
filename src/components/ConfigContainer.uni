@@ -1,0 +1,25 @@
+<template>
+    <div id="ConfigContainer">
+        <div class="title">
+            <h1>Config</h1>
+        </div>
+        <div class="item-list">
+            {
+                this.imports = ["ConfigItem"];
+                this.onFullLoad = () => {
+                    var items = this.children;
+                    for (let i = 0; i < items.length; i++){
+                        items[i].style.right = `-${i*10}px`;
+                    }
+                }
+            }
+            <ConfigItem desc="Vibration" toggle="on"></ConfigItem>
+            <ConfigItem desc="Dialogue Voices" toggle="on"></ConfigItem>
+            <ConfigItem desc="Auto-Advance" toggle="off"></ConfigItem>
+            <ConfigItem desc="Animation Subtitles" toggle="off"></ConfigItem>
+            <ConfigItem desc="Cursor Memory" toggle="on"></ConfigItem>
+            <ConfigItem desc="Battle Memory" toggle="on"></ConfigItem>
+            <ConfigItem desc="Persona Memory" toggle="on"></ConfigItem>
+        </div>
+    </div>
+</template>
