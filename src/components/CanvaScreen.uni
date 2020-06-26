@@ -40,6 +40,7 @@
                         console.log("userPressed");
                     }
                 }
+                window.addEventListener("click", checkIntroPressed);
                 window.addEventListener("keypress", checkIntroPressed);
                 config.addEventListener("click", () => {
                     if (!config.usable || body.inTransition){
