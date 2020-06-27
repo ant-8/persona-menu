@@ -52,12 +52,12 @@
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].play();
                 }
-                await sleep(4500);
+                await sleep(4100);
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].pause();
                     scenes[i].currentTime = 0;
                 }
-                await sleep(500);
+                await sleep(400);
                 loading.style.display = "none";
             }
 
