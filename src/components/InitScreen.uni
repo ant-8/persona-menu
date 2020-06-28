@@ -52,7 +52,7 @@
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].play();
                 }
-                await sleep(3250);
+                await sleep(2600);
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].pause();
                     scenes[i].currentTime = 0;
@@ -62,7 +62,7 @@
             }
 
             async function waitLoad(){
-                await sleep(1000);
+                await sleep(2000);
                 var scenes = document.getElementsByTagName("video");
                 var checkReady = setInterval(async () => {
                     var loaded = 0;
