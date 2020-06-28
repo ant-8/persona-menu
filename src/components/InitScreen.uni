@@ -52,7 +52,7 @@
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].play();
                 }
-                await sleep(1250);
+                await sleep(1400);
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].pause();
                     scenes[i].currentTime = 0;
