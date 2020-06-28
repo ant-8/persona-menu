@@ -84,7 +84,7 @@
                         clearInterval(checkReady);
                         onLoaded();
                     }
-                }, 8000);
+                }, 10000);
             }
             if (is_touch_device()){
                 loading.style.display = "none";
