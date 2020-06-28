@@ -62,7 +62,7 @@
             }
 
             async function waitLoad(){
-                await sleep(2000);
+                await sleep(3250);
                 var scenes = document.getElementsByTagName("video");
                 var checkReady = setInterval(async () => {
                     var loaded = 0;
