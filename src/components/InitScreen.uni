@@ -52,7 +52,7 @@
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].play();
                 }
-                await sleep(1400);
+                await sleep(2250);
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].pause();
                     scenes[i].currentTime = 0;
@@ -84,7 +84,7 @@
                         clearInterval(checkReady);
                         onLoaded();
                     }
-                }, 10000);
+                }, 12000);
             }
             if (is_touch_device()){
                 loading.style.display = "none";
