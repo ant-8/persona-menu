@@ -65,10 +65,11 @@ var uni;
                 let props = getProps(el);
                 el.outerHTML = componentHTML.getElementsByTagName("template")[0].innerHTML;
                 
-                for (let j = i; j < i + componentExec.children.length; j++){
+                for (var j = i; j < i + componentExec.children.length; j++){
                     el = target.children[j];
                     evalExecTree(componentExec.children[j - i], el, props);
                 }
+                i = j;
             }
         }
     }
