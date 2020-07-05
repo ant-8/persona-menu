@@ -21,6 +21,7 @@
             }
             window.addEventListener("resize", calcSize);
             calcSize();
+            
             this.onFullLoad = () => {
                 var config = this.find(".config-hover"); 
                 var newGame = this.find(".newgame-hover");
