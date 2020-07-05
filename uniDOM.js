@@ -66,10 +66,9 @@ var uni;
                 el.outerHTML = componentHTML.getElementsByTagName("template")[0].innerHTML;
                 
                 for (var j = i; j < i + componentExec.children.length; j++){
-                    el = target.children[j];
-                    evalExecTree(componentExec.children[j - i], el, props);
+                    evalExecTree(componentExec.children[j - i], target.children[j], props);
                 }
-                i = j;
+                i += el.children.length;
             }
         }
     }
