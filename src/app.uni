@@ -1,6 +1,5 @@
 <html>
     <head>
-        <link rel="image_src" href="/assets/InitBG.jpg" />
         <link rel="preload" as="video" href="/assets/Intro.mp4">
         <link rel="preload" as="video" href="/assets/MenuNewGame.mp4">
         <link rel="preload" as="video" href="/assets/MenuNewGame2.mp4">
@@ -22,6 +21,7 @@
 
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="image_src" href="/assets/InitBG.jpg" />
         <title>Persona 5 Menu</title>
     </head>
     <body>
