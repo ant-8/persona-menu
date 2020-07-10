@@ -156,7 +156,10 @@ var uni;
         runClosure(tree.closure, context);
         context._didInit = true;
         for (var i = 0; i < children.length; i++){
-            var child = evalExecTree(children[i], context.childNodes[children[i].context], props);
+            var child = context.childNodes.length > children[i].context 
+                        && context.childNodes[children[i].context];
+            if (!child || child._didInit) continue;
+            evalExecTree(children[i], child, props);
             if (context.onChildLoad){
                 context.onChildLoad(child);
             }
