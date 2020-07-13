@@ -1,4 +1,4 @@
-![](showcase.gif)
+![](https://anythony.github.io/res/show-persona.gif)
 ## About
 
 A fan-made interactive game menu from Persona 5.
