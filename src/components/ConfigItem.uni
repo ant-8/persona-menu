@@ -1,6 +1,6 @@
 <template>
     <div class="config-item">
-        {
+        <script name="uni">
             this.find(".desc").innerText = this.props.desc;
             var containStyle = this.parentElement.parentElement.style;
             var body = document.body;
@@ -38,7 +38,7 @@
                     selectSound.play();
                 }
             }
-        }
+        </script>
         <div class="selector"></div>
         <div class="toggle">
             <img width="135" src="assets/sprites/config_on.png">

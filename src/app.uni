@@ -25,7 +25,7 @@
         <title>Persona 5 Menu</title>
     </head>
     <body>
-        {
+        <script name="uni">
             this.state = {
                 screen: "Init",
                 prevScreen: null
@@ -40,7 +40,7 @@
                             "CanvaScreen",
                             "InfoBar"];
 
-        }
+        </script>
         <audio id="selectAudio">
             <source src="assets/select.wav" type="audio/mpeg"> 
         </audio>

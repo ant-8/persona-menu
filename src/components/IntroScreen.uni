@@ -1,6 +1,6 @@
 <template>
   <video muted class="screen screen-intro Intro">
-    {
+    <script name="uni">
       this.screenName = "Intro";
       this.userPressed = false;
       this.bindState(state => {
@@ -20,7 +20,7 @@
           this.remove();
         }, this.userPressed ? 500 : 0);
       }
-    }
+    </script>
     <source src="assets/Intro.mp4" type="video/mp4">
   </video>
 </template>

@@ -9,7 +9,8 @@
   "devDependencies": {},
   "scripts": {
     "dev": "concurrently --kill-others \"uni build && live-server --WATCH=/build --mount=/:%cd%/build --wait=200 --no-css-inject\" \"uni watch\"",
-    "build": "uni build"
+    "build": "uni build",
+    "push": "git subtree push --prefix=build origin gh-pages && git push origin master"
   },
   "author": "",
   "license": "ISC"

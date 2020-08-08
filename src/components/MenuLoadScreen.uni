@@ -1,6 +1,6 @@
 <template>
   <video muted loop class="screen MenuLoadGame">
-    {
+    <script name="uni">
       this.screenName = "MenuLoadGame";
       this.sceneB = "assets/MenuLoad3.mp4"
       this.translateMap = {
@@ -49,7 +49,7 @@
         translate.play();
         translate.style["z-index"] = 1;
       });
-    }
+    </script>
     <source src="assets/MenuLoad4.mp4" type="video/mp4">
   </video>
   <video muted class="screen MenuLoadGameT-1">

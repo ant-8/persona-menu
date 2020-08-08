@@ -1,6 +1,6 @@
 <template>
     <div id="InitScreen">
-        {
+        <script name="uni">
             var track = document.getElementById("trackAudio");
             var startToggle = this.find("#start-toggle");
             var progress = this.find(".progress");
@@ -93,7 +93,7 @@
             }else{
                 waitLoad();
             }
-        }
+        </script>
         <img class="center-in" src="assets/InitLoading.gif" height="60">
         <span class="center-in progress">0/17 loaded</span>
         <div id="start-toggle" class="center-in">

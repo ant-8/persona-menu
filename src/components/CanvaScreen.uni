@@ -1,6 +1,6 @@
 <template>
     <div class="canvaScreen">
-        {
+        <script name="uni">
             this.imports = ['TextSprite', 'ImageSprite', 'ConfigContainer', 'LoadContainer'];
             var body = document.body;
             var screens = body.querySelectorAll(".screen");
@@ -79,7 +79,7 @@
                     this.setState({screen: "MenuLoadGame", prevScreen: body.state.screen});
                 });
             };
-        }
+        </script>
         <img class="screen ConfigBG" src="assets/ConfigBG.gif">
         <ConfigContainer></ConfigContainer>
         <LoadContainer></LoadContainer>

@@ -1,6 +1,6 @@
 <template>
     <div class="sprite text-sprite">
-        {
+        <script name="uni">
             var hoverSound = document.getElementById("hoverAudio");
             var selectSound = document.getElementById("selectAudio");
             var body = document.body;
@@ -33,7 +33,7 @@
                 this.style.cursor = "auto";
                 selectSound.play();
             });
-        }
+        </script>
         <img height="100%">
     </div>
 </template>

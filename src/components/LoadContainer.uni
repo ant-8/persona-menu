@@ -1,6 +1,6 @@
 <template>
     <div id="LoadContainer" class="load-slide-out">
-        {
+        <script name="uni">
             this.imports = ["LoadCard"];
 
             var hoverSound = document.getElementById("hoverAudio");
@@ -49,7 +49,7 @@
                 }
                 this.className = "load-slide-in";
             })
-        }
+        </script>
         <div class="header">
             <img src="assets/sprites/loadgame_header.png">
         </div>

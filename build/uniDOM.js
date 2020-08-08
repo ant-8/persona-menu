@@ -148,11 +148,6 @@ var uni;
         var children = tree.children;
         //console.log(tree, context);
         context.props = props;
-        /*if (context.childNodes.length &&
-            typeof context.childNodes[0].data === 'string' &&
-            context.childNodes[0].data.trim() == ""){
-            context.childNodes[0].remove(); //dirty workaround
-        }*/
         runClosure(tree.closure, context);
         context._didInit = true;
         for (var i = 0; i < children.length; i++){

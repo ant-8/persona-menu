@@ -1,6 +1,6 @@
 <template>
   <video muted loop class="screen screen-await AwaitButton">
-    {
+    <script name="uni">
       this.screenName = "AwaitButton";
       this.bindState(state => {
         if (state.screen != this.screenName)
@@ -19,7 +19,7 @@
       }
       document.body.onkeypress = onInput;
       document.body.onclick = onInput; 
-    }
+    </script>
     <source src="assets/AwaitButton.mp4" type="video/mp4">
   </video>
 </template>

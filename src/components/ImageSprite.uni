@@ -1,6 +1,6 @@
 <template>
     <div class="sprite image-sprite">
-        {
+        <script name="uni">
             var img = this.find("img");
             img.src = this.props.src;
             img.setAttribute("usemap", "#map");
@@ -9,7 +9,7 @@
                     this.classList.add(cl);
                 })
             }
-        }
+        </script>
         <img height="100%">
     </div>
 </template>

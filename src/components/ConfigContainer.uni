@@ -4,7 +4,7 @@
             <h1>Config</h1>
         </div>
         <div class="item-list">
-            {
+            <script name="uni">
                 this.imports = ["ConfigItem"];
                 this.onFullLoad = () => {
                     var items = this.children;
@@ -12,7 +12,7 @@
                         items[i].style.right = `-${i*10}px`;
                     }
                 }
-            }
+            </script>
             <ConfigItem desc="Vibration" toggle="on"></ConfigItem>
             <ConfigItem desc="Dialogue Voices" toggle="on"></ConfigItem>
             <ConfigItem desc="Auto-Advance" toggle="off"></ConfigItem>

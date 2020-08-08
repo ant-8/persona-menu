@@ -1,6 +1,6 @@
 <template>
   <video muted loop class="screen MenuConfig">
-    {
+    <script name="uni">
       this.screenName = "MenuConfig";
       this.translateMap = {
         "MenuNewGame": this.parentElement.find(".MenuConfigT-1"),
@@ -11,13 +11,13 @@
       var body = document.body;
       var prevScreen = null;
       var configFlag = false;
-      for (const screen in this.translateMap){
+      for (const screen in this.translateMap) {
         let trScreen = this.translateMap[screen];
         trScreen.onended = () => {
-          if (!document.body.initPressed){
+          if (!document.body.initPressed) {
             return;
           }
-          if (this.paused){
+          if (this.paused) {
             this.play();
           }
           this.style["z-index"] = 1;
@@ -28,7 +28,7 @@
         };
       }
       this.bindState(state => {
-        if (state.screen != this.screenName){
+        if (state.screen != this.screenName) {
           /*if (!this.paused){
             this.pause();
           }*/
@@ -40,14 +40,14 @@
         var configPressed = document.body.configPressed;
         var translate = this.translateMap[state.prevScreen + (configPressed ? "2" : "")];
         document.body.configPressed = true;
-        
-        if (prevScreen){
+
+        if (prevScreen) {
           prevScreen.style["z-index"] = 0;
         }
         translate.play();
         translate.style["z-index"] = 1;
       });
-    }
+    </script>
     <source src="assets/MenuConfig2.mp4" type="video/mp4">
   </video>
   <video muted class="screen MenuConfigT-1">
