@@ -15,7 +15,8 @@
             }
             this.onFullLoad = () => {
                 this.addEventListener("mouseenter", () => {
-                    if (body.state.screen != "MenuConfig" || !containStyle.opacity){
+                    console.log("containStyle", containStyle.opacity);
+                    if (body.state.screen != "MenuConfig" || containStyle.opacity == "0"){
                         return;
                     }
                     this.style.cursor = "pointer";
@@ -23,14 +24,14 @@
                     hoverSound.play();
                 });
                 this.addEventListener("mouseleave", () => {
-                    if (body.state.screen != "MenuConfig" || !containStyle.opacity){
+                    if (body.state.screen != "MenuConfig" || containStyle.opacity == "0"){
                         return;
                     }
                     this.style.cursor = "auto";
                     selector.style.display = "none";
                 });
                 this.onclick = () => {
-                    if (body.state.screen != "MenuConfig" || !containStyle.opacity){
+                    if (body.state.screen != "MenuConfig" || containStyle.opacity == "0"){
                         return;
                     }
                     toggle = !toggle;

@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta property="og:image" content="https://raw.githubusercontent.com/AnyThony/persona-menu/gh-pages/assets/InitBG.jpg" />
         <link rel="preload" as="video" href="/assets/Intro.mp4">
         <link rel="preload" as="video" href="/assets/MenuNewGame.mp4">
         <link rel="preload" as="video" href="/assets/MenuNewGame2.mp4">
