@@ -1,6 +1,8 @@
 <html>
     <head>
+        <meta property="og:title" content="Persona 5 Menu" />
         <meta property="og:image" content="https://raw.githubusercontent.com/AnyThony/persona-menu/gh-pages/assets/InitBG.jpg" />
+        <meta property="og:url"   content="https://anythony.github.io/persona-menu/" />
         <link rel="preload" as="video" href="/assets/Intro.mp4">
         <link rel="preload" as="video" href="/assets/MenuNewGame.mp4">
         <link rel="preload" as="video" href="/assets/MenuNewGame2.mp4">
