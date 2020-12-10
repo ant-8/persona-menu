@@ -1,14 +1,14 @@
 <template>
     <div class="sprite text-sprite">
         <script name="uni">
-            var hoverSound = document.getElementById("hoverAudio");
-            var selectSound = document.getElementById("selectAudio");
-            var body = document.body;
-            var canvas = this.parentElement;
-            var usableScreens = this.props.screens.split(" ");
-            this.usable = false;
-            var img = this.find("img");
+            const hoverSound = document.getElementById("hoverAudio");
+            const selectSound = document.getElementById("selectAudio");
+            const body = document.body;
+            const canvas = this.parentElement;
+            const usableScreens = this.props.screens.split(" ");
+            const img = this.find("img");
             img.src = this.props.src;
+            this.usable = false;
             this.bindState((state) => {
                 this.usable = usableScreens.indexOf(state.screen) != -1;
             })

@@ -1,11 +1,11 @@
 <template>
     <div id="InitScreen">
         <script name="uni">
-            var track = document.getElementById("trackAudio");
-            var startToggle = this.find("#start-toggle");
-            var progress = this.find(".progress");
-            var loading = this.find("img");
-            var loaded = false;
+            const track = document.getElementById("trackAudio");
+            const startToggle = this.find("#start-toggle");
+            const progress = this.find(".progress");
+            const loading = this.find("img");
+            let loaded = false;
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
@@ -24,9 +24,9 @@
 
             function is_touch_device() {
     
-                var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+                const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
                 
-                var mq = function (query) {
+                const mq = function (query) {
                     return window.matchMedia(query).matches;
                 }
             
@@ -36,7 +36,7 @@
             
                 // include the 'heartz' as a way to have a non matching MQ to help terminate the join
                 // https://git.io/vznFH
-                var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+                const query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
                 return mq(query);
             }
 
@@ -47,7 +47,7 @@
             }
 
             forceBuffer = async () => {
-                var scenes = document.getElementsByTagName("video");
+                const scenes = document.getElementsByTagName("video");
                 loading.style.display = "block";
                 for(let i = 0; i < scenes.length; i++){
                     scenes[i].play();
@@ -63,9 +63,9 @@
 
             async function waitLoad(){
                 await sleep(3250);
-                var scenes = document.getElementsByTagName("video");
-                var checkReady = setInterval(async () => {
-                    var loaded = 0;
+                const scenes = document.getElementsByTagName("video");
+                const checkReady = setInterval(async () => {
+                    let loaded = 0;
                     for (let i = 0; i < scenes.length; i++){
                         if (scenes[i].readyState == 4){
                             loaded++;

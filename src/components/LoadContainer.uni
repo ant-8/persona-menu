@@ -3,20 +3,20 @@
         <script name="uni">
             this.imports = ["LoadCard"];
 
-            var hoverSound = document.getElementById("hoverAudio");
-            var selectSound = document.getElementById("selectAudio");
+            const hoverSound = document.getElementById("hoverAudio");
+            const selectSound = document.getElementById("selectAudio");
             this.onFullLoad = () => {
-                var cards = this.getElementsByClassName("LoadCard");
+                const cards = this.getElementsByClassName("LoadCard");
                 for (let i = 0; i < cards.length; i++){
-                    var index = cards.length - (i + 1);
-                    var c = cards[index];
+                    const index = cards.length - (i + 1);
+                    const c = cards[index];
                     c.style.right = `-${(i*50)}px`;
                     c.style.top = `${(i*40) - 300}px`;
                     c.find(".numero").innerText = "No."+(i+1);
-                    var setEvent = (card, index) => {
+                    const setEvent = (card, index) => {
                         card.onmouseenter = () => {
-                            var offsetRight = parseInt(card.style.right.split("px")[0]);
-                            var img = card.find("img");
+                            const offsetRight = parseInt(card.style.right.split("px")[0]);
+                            const img = card.find("img");
                             img.src = "assets/sprites/loadgame_card_hover.png";
                             for (let j = index; j >= 0; j--){
                                 cards[j].style.top = cards[j].offsetTop + 100 + "px";
@@ -25,8 +25,8 @@
                             card.style.right = offsetRight + 100 + "px";
                         }
                         card.onmouseleave = () => {
-                            var offsetRight = parseInt(card.style.right.split("px")[0]);
-                            var img = card.find("img");
+                            const offsetRight = parseInt(card.style.right.split("px")[0]);
+                            const img = card.find("img");
                             img.src = "assets/sprites/loadgame_card.png";
                             for (let j = index; j >= 0; j--){
                                 cards[j].style.top = cards[j].offsetTop - 100 + "px";

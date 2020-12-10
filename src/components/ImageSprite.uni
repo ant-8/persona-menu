@@ -1,7 +1,7 @@
 <template>
     <div class="sprite image-sprite">
         <script name="uni">
-            var img = this.find("img");
+            const img = this.find("img");
             img.src = this.props.src;
             img.setAttribute("usemap", "#map");
             if (this.props.subclass){

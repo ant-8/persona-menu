@@ -2,14 +2,14 @@
     <div class="canvaScreen">
         <script name="uni">
             this.imports = ['TextSprite', 'ImageSprite', 'ConfigContainer', 'LoadContainer'];
-            var body = document.body;
-            var screens = body.querySelectorAll(".screen");
-            var screenIntro = body.find(".screen-intro");
-            var selectAudio = document.getElementById("selectAudio");
-            var calcSize = () => {
-                var scale, origin;
-                var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-                var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            const body = document.body;
+            const screens = body.querySelectorAll(".screen");
+            const screenIntro = body.find(".screen-intro");
+            const selectAudio = document.getElementById("selectAudio");
+            const calcSize = () => {
+                let scale, origin;
+                const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                const h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
                 scale = Math.min(
                     h / this.offsetHeight,    
                     w / this.offsetWidth
@@ -23,15 +23,15 @@
             calcSize();
             
             this.onFullLoad = () => {
-                var config = this.find(".config-hover"); 
-                var newGame = this.find(".newgame-hover");
-                var loadGame = this.find(".loadgame-hover");
-                var configBG = this.find(".ConfigBG");
-                var spinner = this.find(".loading-menu");
-                var configContainer = this.find("#ConfigContainer")
+                const config = this.find(".config-hover"); 
+                const newGame = this.find(".newgame-hover");
+                const loadGame = this.find(".loadgame-hover");
+                const configBG = this.find(".ConfigBG");
+                const spinner = this.find(".loading-menu");
+                const configContainer = this.find("#ConfigContainer")
                 body.spinner = spinner;
 
-                var checkIntroPressed = () => {
+                const checkIntroPressed = () => {
                     if (body.state.screen == "Intro" && !screenIntro.userPressed){
                         document.body.find(".Intro").playbackRate = 1.55;
                         document.body.find(".screen-await").remove();

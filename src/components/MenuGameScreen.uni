@@ -10,8 +10,8 @@
         "MenuLoadGame": this.parentElement.find(".MenuNewGameT-3"),
         "MenuLoadGame2": this.parentElement.find(".MenuNewGameT-3B")
       };
-      var body = document.body;
-      var prevScreen = null;
+      const body = document.body;
+      let prevScreen = null;
       for (const screen in this.translateMap){
         let trScreen = this.translateMap[screen];
         trScreen.onended = () => {
@@ -39,8 +39,8 @@
         document.body.find(".loading-menu").style.opacity = 1;
         body.inTransition = true;
         prevScreen = document.body.find("." + state.prevScreen);
-        var configPressed = document.body.configPressed;
-        var translate = this.translateMap[state.prevScreen];
+        const configPressed = document.body.configPressed;
+        let translate = this.translateMap[state.prevScreen];
         if (state.prevScreen == "MenuLoadGame" && configPressed){
           translate = this.translateMap[state.prevScreen+"2"];
         }

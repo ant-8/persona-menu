@@ -2,13 +2,13 @@
     <div class="config-item">
         <script name="uni">
             this.find(".desc").innerText = this.props.desc;
-            var containStyle = this.parentElement.parentElement.style;
-            var body = document.body;
-            var selector = this.find(".selector");
-            var hoverSound = document.getElementById("hoverAudio");
-            var selectSound = document.getElementById("selectAudio");
-            var toggleImg = this.find("img");
-            var toggle = true;
+            const containStyle = this.parentElement.parentElement.style;
+            const body = document.body;
+            const selector = this.find(".selector");
+            const hoverSound = document.getElementById("hoverAudio");
+            const selectSound = document.getElementById("selectAudio");
+            const toggleImg = this.find("img");
+            let toggle = true;
             if (this.props.toggle){
                 toggleImg.src = `assets/sprites/config_${this.props.toggle}.png`;
                 toggle = this.props.toggle == "on";

@@ -7,7 +7,7 @@
             <script name="uni">
                 this.imports = ["ConfigItem"];
                 this.onFullLoad = () => {
-                    var items = this.children;
+                    const items = this.children;
                     for (let i = 0; i < items.length; i++){
                         items[i].style.right = `-${i*10}px`;
                     }

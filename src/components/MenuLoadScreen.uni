@@ -9,8 +9,8 @@
         "MenuConfig": this.parentElement.find(".MenuLoadGameT-2"),
         "MenuConfig2": this.parentElement.find(".MenuLoadGameT-2B")
       };
-      var prevScreen = null;
-      var body = document.body;
+      let prevScreen = null;
+      const body = document.body;
       for (const screen in this.translateMap){
         let trScreen = this.translateMap[screen];
         trScreen.onended = () => {
@@ -29,16 +29,13 @@
       }
       this.bindState(state => {
         if (state.screen != this.screenName){
-          /*if (!this.paused){
-            this.pause();
-          }*/
           this.style["z-index"] = 0;
           return
         }
         body.inTransition = true;
         prevScreen = document.body.find("." + state.prevScreen);
-        var configPressed = document.body.configPressed;
-        var translate = this.translateMap[state.prevScreen + (configPressed ? "2" : "")];
+        const configPressed = document.body.configPressed;
+        const translate = this.translateMap[state.prevScreen + (configPressed ? "2" : "")];
         if (configPressed && this.src != this.sceneB){
           this.src = this.sceneB;
           this.load();
