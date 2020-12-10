@@ -1,8 +1,5 @@
-console.log("uni loaded");
-var uni;
+let uni;
 (() => {
-    const TOK_START_JS = "{";
-    const TOK_END = "}";
     const IGNORE_INTERPRET = ["SCRIPT", "LINK", "HTML", "HEAD", "LINK", "IFRAME", "TITLE"];
     const parser = new DOMParser();
 
@@ -16,14 +13,14 @@ var uni;
 
     // loads a component as a child of parent
     function addComponent(name, parent, props){
-        var component = uni._rawComponents[name];
-        var componentHTML = component && parser.parseFromString(component.srcBuffer, "text/html");
-        var componentExec = component && component.execTree;
+        const component = uni._rawComponents[name];
+        let componentHTML = component && parser.parseFromString(component.srcBuffer, "text/html");
+        let componentExec = component && component.execTree;
         if (!component) return;
         componentHTML = componentHTML.getElementsByTagName("template")[0].innerHTML;
         // keep track of the initial num of childs
-        var numChildOld = parent.children.length;
-        var mockComponent = document.createElement('DIV');
+        const numChildOld = parent.children.length;
+        const mockComponent = document.createElement('DIV');
         mockComponent.innerHTML = componentHTML;
         for (let j = 0; j < mockComponent.children.length; j++) {
             parent.appendChild(mockComponent.children[j].cloneNode(true));
@@ -31,7 +28,7 @@ var uni;
         // component is appended
         // components can have multiple roots so they all need to be evaluated
         // numChildOld is the index of the appended component 1st root so iteration starts there
-        var children = parent.children;
+        const children = parent.children;
         for (let i = numChildOld; i < numChildOld + componentExec.children.length; i++) {
             if (!children[i]._didInit) {
                 //componentExec.children[i - numChildOld].context = children[i];
@@ -43,8 +40,8 @@ var uni;
 
     // get props from html tag attributes
     function getProps(target) {
-        var props = {};
-        var nameList = target.getAttributeNames();
+        const props = {};
+        const nameList = target.getAttributeNames();
         for (let i = 0; i < nameList.length; i++) {
             let name = nameList[i];
             props[name] = target.getAttribute(name);
@@ -54,18 +51,18 @@ var uni;
 
     // search children of target for component tags then load if exists
     function registerComponent(target, name) {
-        var component = uni._rawComponents[name.toLowerCase()];
-        var componentHTML = component && parser.parseFromString(component.srcBuffer, "text/html");;
-        var componentExec = component && component.execTree;
+        const component = uni._rawComponents[name.toLowerCase()];
+        const componentHTML = component && parser.parseFromString(component.srcBuffer, "text/html");;
+        const componentExec = component && component.execTree;
         if (!component) return;
 
         for (let i = 0; i < target.children.length; i++) {
-            var el = target.children[i];
+            const el = target.children[i];
             if (el.tagName == name.toUpperCase()) {
                 let props = getProps(el);
                 el.outerHTML = componentHTML.getElementsByTagName("template")[0].innerHTML;
                 
-                for (var j = i; j < i + componentExec.children.length; j++){
+                for (let j = i; j < i + componentExec.children.length; j++){
                     evalExecTree(componentExec.children[j - i], target.children[j], props);
                 }
                 i += el.children.length;
@@ -90,7 +87,7 @@ var uni;
             }
         };
         this.setState = function (newState) {
-            var updated = false;
+            let updated = false;
             // call on the nearest ancestor with a declared state
             if (!this.state) {
                 if (this != document.body && this.parentElement) {
@@ -126,7 +123,7 @@ var uni;
 
     function runClosure(closure, context){
         //console.log(closure, context)
-        var raw = `
+        const raw = `
         uni._preClosure.call(this);
         `+closure+` 
         return {
@@ -134,9 +131,9 @@ var uni;
             onChildLoad: typeof this.onChildLoad === 'function' ? this.onChildLoad : null,
             imports: typeof this.imports === 'object' ? this.imports : null
         }`
-        var _cl = Function(raw).call(context);
+        const _cl = Function(raw).call(context);
         if (_cl.imports) {
-            var imports = _cl.imports;
+            const imports = _cl.imports;
             for (let i = 0; i < imports.length; i++) {
                 registerComponent(context, imports[i]);
             }
@@ -145,13 +142,13 @@ var uni;
     }
 
     function evalExecTree(tree, context, props = {}){
-        var children = tree.children;
+        const children = tree.children;
         //console.log(tree, context);
         context.props = props;
         runClosure(tree.closure, context);
         context._didInit = true;
-        for (var i = 0; i < children.length; i++){
-            var child = context.childNodes.length > children[i].context 
+        for (let i = 0; i < children.length; i++){
+            const child = context.childNodes.length > children[i].context 
                         && context.childNodes[children[i].context];
             if (!child || child._didInit) continue;
             evalExecTree(children[i], child, props);
@@ -165,3 +162,4 @@ var uni;
         return context;
     }
 })()
+console.log("uni loaded");
