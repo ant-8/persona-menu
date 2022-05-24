@@ -4,7 +4,7 @@ A fan-made interactive game menu from Persona 5.
 
 Background scenes are used from the original game.
 
-![](https://anthony-22.github.io/res/show-persona.gif)
+![](https://github.com/anthony-22/persona-menu/blob/master/showcase.gif?raw=true)
 
 ## Setup
 
